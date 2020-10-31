@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.djrwb.trektracker">
+    <!-- required for foreground services with notifications -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <!-- required for GPS-based location -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <!-- required for cloud backups -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TrekTracker">
+        <!--configChanges allows the activity to avoid being recreated during various events-->
+        <activity android:name=".MainActivity" android:configChanges="orientation|keyboardHidden|screenSize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- required to register any service -->
+        <service android:name=".GPSService" />
+        <service android:name=".CloudService" />
+    </application>
+</manifest>
